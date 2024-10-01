@@ -7,12 +7,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EncodeAndDecodeString_LC271_test {
+public class LC271_EncodeAndDecodeStringTest {
 
-    static EncodeAndDecodeString_LC271 codec;
+    static LC271_EncodeAndDecodeString codec;
     @BeforeAll
     public static void init(){
-        codec = new EncodeAndDecodeString_LC271();
+        codec = new LC271_EncodeAndDecodeString();
     }
     @Test
     public void testEncode(){

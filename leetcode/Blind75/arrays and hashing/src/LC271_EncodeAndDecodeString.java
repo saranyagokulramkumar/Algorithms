@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ and delim index, get the substring of this length starting from delim+2 until de
 Time complexity -> O(N), Space complexity -> O(k)
  */
 
-public class EncodeAndDecodeString_LC271 {
+public class LC271_EncodeAndDecodeString {
     //chunked transfer encoding
     public String encode(List<String> strs){
         StringBuilder encodedString = new StringBuilder();
