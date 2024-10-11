@@ -15,37 +15,14 @@ public class LC206_ReverseLinkedListTest {
         solution = new LC206_ReverseLinkedList();
     }
 
-    private ListNode createLinkedList(int[] values){
-        if(values.length == 0)return null;
-
-        ListNode head = new ListNode(values[0]);
-        ListNode curr = head;
-
-        for(int i = 1; i < values.length; i++){
-            curr.next = new ListNode(values[i]);
-            curr = curr.next;
-        }
-        return head;
-    }
-
-    private int[] linkedListToArray(ListNode head){
-        List<Integer> resultList = new ArrayList<>();
-        ListNode current = head;
-        while(current != null){
-            resultList.add(current.val);
-            current = current.next;
-        }
-        return resultList.stream().mapToInt(i -> i).toArray();
-    }
-
     @Test
     public void testReverseListIterative(){
         int[] values = new int[]{1,2,3,4,5};
-        ListNode head = createLinkedList(values);
+        ListNode head = LinkedListUtils.createLinkedList(values);
         int[] expected = new int[]{5,4,3,2,1};
 
         ListNode reversedHead = solution.reverseListIterative(head);
-        int[] reversedList = linkedListToArray(reversedHead);
+        int[] reversedList = LinkedListUtils.linkedListToArray(reversedHead);
 
         assertArrayEquals(expected, reversedList);
     }
@@ -53,11 +30,11 @@ public class LC206_ReverseLinkedListTest {
     @Test
     public void testReverseListIterativeWithSingleElement(){
         int[] values = new int[]{1};
-        ListNode head = createLinkedList(values);
+        ListNode head = LinkedListUtils.createLinkedList(values);
         int[] expected = new int[]{1};
 
         ListNode reversedHead = solution.reverseListIterative(head);
-        int[] reversedList = linkedListToArray(reversedHead);
+        int[] reversedList = LinkedListUtils.linkedListToArray(reversedHead);
 
         assertArrayEquals(expected, reversedList);
     }
@@ -72,11 +49,11 @@ public class LC206_ReverseLinkedListTest {
     @Test
     public void testReverseListIterativeWithDuplicateValues(){
         int[] values = new int[]{3,3,1,1,2};
-        ListNode head = createLinkedList(values);
+        ListNode head = LinkedListUtils.createLinkedList(values);
         int[] expected = new int[]{2,1,1,3,3};
 
         ListNode reversedHead = solution.reverseListIterative(head);
-        int[] reversedList = linkedListToArray(reversedHead);
+        int[] reversedList = LinkedListUtils.linkedListToArray(reversedHead);
 
         assertArrayEquals(expected, reversedList);
     }
@@ -84,11 +61,11 @@ public class LC206_ReverseLinkedListTest {
     @Test
     public void testReverseListRecursive(){
         int[] values = new int[]{1,2,3,4,5};
-        ListNode head = createLinkedList(values);
+        ListNode head = LinkedListUtils.createLinkedList(values);
         int[] expected = new int[]{5,4,3,2,1};
 
         ListNode reversedHead = solution.reverseListRecursive(head);
-        int[] reversedList = linkedListToArray(reversedHead);
+        int[] reversedList = LinkedListUtils.linkedListToArray(reversedHead);
 
         assertArrayEquals(expected, reversedList);
     }
