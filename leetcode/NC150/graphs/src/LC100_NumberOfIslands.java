@@ -76,12 +76,12 @@ public class LC100_NumberOfIslands {
                     islands++;
                     Queue<Integer> neighbours = new LinkedList<>();
                     neighbours.add(row * cols + col);
+                    visited[row][col] = true;
 
                     while (!neighbours.isEmpty()) {
                         int neighbour = neighbours.poll();
                         int nrow = neighbour / cols;
                         int ncol = neighbour % cols;
-                        visited[nrow][ncol] = true;
 
                         validateAndAddNeighbour(nrow + 1, ncol, grid, neighbours, visited);
                         validateAndAddNeighbour(nrow - 1, ncol, grid, neighbours, visited);
@@ -98,6 +98,7 @@ public class LC100_NumberOfIslands {
         if(row >= 0 && row < grid.length && col >= 0 && col < grid[0].length && grid[row][col] == '1' &&
         !visited[row][col]){
             neighbours.add(row * grid[0].length + col);
+            visited[row][col] = true;
         }
     }
 }
