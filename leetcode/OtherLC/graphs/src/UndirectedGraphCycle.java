@@ -24,13 +24,38 @@ public class UndirectedGraphCycle {
         return false;
     }
 
-    public boolean isCyclic(List<List<Integer>> graph){
+    public boolean isCyclicBFS(List<List<Integer>> graph){
         int V = graph.size();
         boolean[] visited = new boolean[V+1];
 
         for(int node = 1; node < V+1; node++){
-            if(visited[node] == false){
+            if(!visited[node]){
                 if(detectCycle(graph, node, visited))return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCyclicDFS(List<List<Integer>> graph){
+        int V = graph.size();
+        boolean[] visited = new boolean[V + 1];
+
+        for(int node = 1; node < V+1; node++){
+            if(!visited[node]){
+                if(detectCycleDFS(graph, node, -1, visited))return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean detectCycleDFS(List<List<Integer>> graph, int node, int parent, boolean[] visited){
+
+        visited[node] = true;
+        for(int neighbor : graph.get(node)){
+            if(!visited[neighbor]){
+                if(detectCycleDFS(graph, neighbor, node, visited))return true;
+            }else if(neighbor != parent){
+                return true;
             }
         }
         return false;

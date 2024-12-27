@@ -17,7 +17,7 @@ public class UndirectedGraphCycleTest {
     }
 
     @Test
-    public void testIsCyclic(){
+    public void testIsCyclicBFS(){
         List<List<Integer>> graph = new ArrayList<>();
         graph.add(new ArrayList<>(Arrays.asList(-1,-1)));
         graph.add(new ArrayList<>(Arrays.asList(2,3)));
@@ -30,6 +30,23 @@ public class UndirectedGraphCycleTest {
         graph.add(new ArrayList<>(Arrays.asList(7,9)));
         graph.add(new ArrayList<>(Arrays.asList(7,8)));
 
-        assertTrue(solution.isCyclic(graph));
+        assertTrue(solution.isCyclicBFS(graph));
+    }
+
+    @Test
+    public void testIsCyclicDFS(){
+        List<List<Integer>> graph = new ArrayList<>();
+        graph.add(new ArrayList<>(Arrays.asList(-1,-1)));
+        graph.add(new ArrayList<>(Arrays.asList(2,3)));
+        graph.add(new ArrayList<>(Arrays.asList(1,4)));
+        graph.add(new ArrayList<>(Arrays.asList(1)));
+        graph.add(new ArrayList<>(Arrays.asList(2)));
+        graph.add(new ArrayList<>(Arrays.asList(6)));
+        graph.add(new ArrayList<>(Arrays.asList(5)));
+        graph.add(new ArrayList<>(Arrays.asList(8,9)));
+        graph.add(new ArrayList<>(Arrays.asList(7,9)));
+        graph.add(new ArrayList<>(Arrays.asList(7,8)));
+
+        assertTrue(solution.isCyclicDFS(graph));
     }
 }
