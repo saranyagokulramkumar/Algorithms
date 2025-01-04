@@ -12,11 +12,22 @@ public class TopologicalSortTest {
     }
 
     @Test
-    public void testTopologicalSort(){
-        int[][] graph = {{}, {}, {3}, {1}, {0,1}, {0,2}};
+    public void testTopologicalSortDFS(){
+//        int[][] graph = {{}, {}, {3}, {1}, {0,1}, {0,2}};
+        int[][] graph = {{1,0}, {0,1}};
         int[] expectedResult = {5,4,2,3,1,0};
 
-        int[] result = solution.topologicalSort(graph);
+        int[] result = solution.topologicalSortDFS(graph);
+
+        assertArrayEquals(result, expectedResult);
+    }
+
+    @Test
+    public void testTopologicalSortBFS(){
+        int[][] graph = {{}, {}, {3}, {1}, {0,1}, {0,2}};
+        int[] expectedResult = {4,5,0,2,3,1};
+
+        int[] result = solution.topologicalSortBFS(graph);
 
         assertArrayEquals(result, expectedResult);
     }
