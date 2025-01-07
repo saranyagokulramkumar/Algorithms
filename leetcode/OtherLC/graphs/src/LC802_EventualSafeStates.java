@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /*
 Q-https://leetcode.com/problems/find-eventual-safe-states/description/
@@ -19,7 +21,7 @@ DFS
 *Space complexity* - O(V)
  */
 public class LC802_EventualSafeStates {
-    public List<Integer> eventualSafeNodes(int[][] graph) {
+    public List<Integer> eventualSafeNodesDFS(int[][] graph) {
         int V = graph.length;
         int[] visited = new int[V];
         int[] pathVisited = new int[V];
@@ -59,5 +61,53 @@ public class LC802_EventualSafeStates {
         pathVisited[source] = 0;
         safeCheck[source] = 1; // since we have reached a terminal vertex with no more paths going out
         return false;
+    }
+
+    public List<Integer> eventualSafeNodesBFS(int[][] graph){
+        // using topological sort
+        // 1. reverse the edges in the graph
+        int V = graph.length;
+        List<List<Integer>> adjRev = new ArrayList<>();
+        for(int i = 0; i < V; i++){
+            adjRev.add(new ArrayList<>());
+        }
+
+        int[] indegree = new int[V];
+        for(int u = 0; u < V; u++){
+            for(int neighbor : graph[u]){
+                // u -> v => v ->u
+                adjRev.get(neighbor).add(u);
+                indegree[u]++;
+            }
+        }
+
+        // 2. perform topological sort
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i = 0; i < V; i++){
+            if(indegree[i] == 0){
+                queue.offer(i);
+            }
+        }
+
+        List<Integer> safeNodes = new ArrayList<>();
+        boolean[] safe = new boolean[V];
+        while(!queue.isEmpty()){
+            int node = queue.poll();
+            safe[node] = true;
+
+            for(int neighbor : adjRev.get(node)){
+                indegree[neighbor]--;
+                if(indegree[neighbor] == 0){
+                    queue.offer(neighbor);
+                }
+            }
+        }
+
+        for(int i = 0; i < V; i++){
+            if(safe[i]){
+                safeNodes.add(i);
+            }
+        }
+        return safeNodes;
     }
 }

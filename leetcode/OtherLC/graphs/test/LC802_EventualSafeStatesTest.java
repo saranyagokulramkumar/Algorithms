@@ -16,11 +16,21 @@ public class LC802_EventualSafeStatesTest {
     }
 
     @Test
-    public void testEventualSafeNodes(){
+    public void testEventualSafeNodesDFS(){
         int[][] graph = {{1,2},{2,3},{5},{0},{5},{},{}};
         List<Integer> expectedResult = new ArrayList<>(Arrays.asList(2,4,5,6));
 
-        List<Integer> result = solution.eventualSafeNodes(graph);
+        List<Integer> result = solution.eventualSafeNodesDFS(graph);
+
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void testEventualSafeNodesBFS(){
+        int[][] graph = {{1,2},{2,3},{5},{0},{5},{},{}};
+        List<Integer> expectedResult = new ArrayList<>(Arrays.asList(2,4,5,6));
+
+        List<Integer> result = solution.eventualSafeNodesBFS(graph);
 
         assertEquals(result, expectedResult);
     }
